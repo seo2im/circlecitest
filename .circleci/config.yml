@@ -11,7 +11,7 @@ jobs:
           command: ls
       - run:
           name: jq install
-          command: apt-get install jq
+          command: sudo apt-get install jq
       - run:
           name: Say hello
           command: |
