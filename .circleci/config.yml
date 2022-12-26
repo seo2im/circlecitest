@@ -15,9 +15,26 @@ jobs:
       - run:
           name: "Check"
           command: cat version.json
-          
+      - persist_to_workspace:
+          name: "next dir"
+          root: .
+          paths:
+            - .
+  say-hey:
+    work_directory: ~/circlecitest
+    docker:
+      -image: cimg/base:stable
+    step: 
+      - attach_workspace:
+          at: .
+      - run:
+          name: "Check"
+          command: cat version.json 
 
 workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      - say-hey:
+          requires:
+            - say-hello
