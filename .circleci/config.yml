@@ -2,17 +2,17 @@ version: 2.1
 
 jobs:
   say-hello:
-    working_directory: 
+    working_directory: ~/circlecitest
     docker:
-      - image: stedolan/jq
+      - image: cimg/base:stable
     steps:
       - run:
           name: dir
           command: |
-            ls /app
-            ls /root
-            ls /home
-            find / -name "circlecitest"
+            ls
+      - run:
+          name: 'jq install',
+          command: apt-get install jq
       - run:
           name: Say hello
           command: |
