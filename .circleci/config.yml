@@ -6,12 +6,11 @@ jobs:
     docker:
       - image: stedolan/jq
     steps:
-      - checkout
       - run:
           name: "Say hello"
           command: |
-            jq -e '.version + 1' 'version.json' > 'version.json.tmp'
-            cp 'version.json.tmp' 'version.json'
+            'jq -e ".version + 1" "version.json" > "version.json.tmp"'
+            'cp "version.json.tmp" "version.json"'
       - run:
           name: "Check"
           command: cat version.json
@@ -34,7 +33,12 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello
+      - say-hello:
+          filters:
+            branches:
+              only:
+                circleci-project-setup
+
       - say-hey:
           requires:
             - say-hello
