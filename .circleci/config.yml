@@ -2,12 +2,15 @@ version: 2.1
 
 jobs:
   say-hello:
+    working_directory: ~/circlecitest
     docker:
       - image: cimg/base:stable
     steps:
       - run:
           name: dir
-          command: pwd
+          command: |
+            pwd
+            ls
       - run:
           name: jq install
           command: sudo apt-get install jq
@@ -25,6 +28,7 @@ jobs:
           paths:
             - .
   say-hey:
+    working_directory: ~/circlecitest
     docker:
       - image: cimg/base:stable
     steps: 
