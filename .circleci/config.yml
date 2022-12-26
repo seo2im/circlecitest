@@ -22,7 +22,7 @@ jobs:
   say-hey:
     working_directory: ~/circlecitest
     docker:
-      -image: cimg/base:stable
+      - image: cimg/base:stable
     steps: 
       - attach_workspace:
           at: .
