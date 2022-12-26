@@ -2,12 +2,12 @@ version: 2.1
 
 jobs:
   say-hello:
-    work_directory: ~/circlecitest
+    working_directory: ~/circlecitest
     docker:
       - image: stedolan/jq
     steps:
       - run:
-          name: "Say hello"
+          name: Say hello
           command: |
             'jq -e ".version + 1" "version.json" > "version.json.tmp"'
             'cp "version.json.tmp" "version.json"'
@@ -15,19 +15,19 @@ jobs:
           name: "Check"
           command: cat version.json
       - persist_to_workspace:
-          name: "next dir"
+          name: next dir
           root: .
           paths:
             - .
   say-hey:
-    work_directory: ~/circlecitest
+    working_directory: ~/circlecitest
     docker:
       -image: cimg/base:stable
     step: 
       - attach_workspace:
           at: .
       - run:
-          name: "Check"
+          name: Check
           command: cat version.json 
 
 workflows:
