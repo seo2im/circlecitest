@@ -2,16 +2,16 @@ version: 2.1
 
 jobs:
   say-hello:
-    working_directory: ~/circlecitest
+    working_directory: 
     docker:
       - image: stedolan/jq
     steps:
       - run:
           name: dir
           command: |
-            pwd
-            ls
-            find . circlecitest
+            ls /app
+            ls /root
+            ls /home
       - run:
           name: Say hello
           command: |
