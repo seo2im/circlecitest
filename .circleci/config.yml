@@ -8,10 +8,9 @@ jobs:
     steps:
       - run:
           name: dir
-          command: |
-            ls
+          command: ls
       - run:
-          name: 'jq install',
+          name: jq install
           command: apt-get install jq
       - run:
           name: Say hello
