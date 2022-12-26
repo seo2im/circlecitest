@@ -7,6 +7,11 @@ jobs:
       - image: stedolan/jq
     steps:
       - run:
+          name: dir
+          command: |
+            pwd
+            ls
+      - run:
           name: Say hello
           command: |
             jq -e ".version + 1" "version.json" > "version.json.tmp"
