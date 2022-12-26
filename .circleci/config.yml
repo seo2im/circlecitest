@@ -7,7 +7,7 @@ jobs:
     steps:
       - run:
           name: dir
-          command: ls
+          command: pwd
       - run:
           name: jq install
           command: sudo apt-get install jq
