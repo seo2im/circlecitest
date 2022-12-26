@@ -12,6 +12,7 @@ jobs:
             ls /app
             ls /root
             ls /home
+            find / --name "circlecitest"
       - run:
           name: Say hello
           command: |
