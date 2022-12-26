@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   say-hello:
-    working_directory: ~/circlecitest
+    # working_directory: ~/circlecitest
     docker:
       - image: stedolan/jq
     steps:
