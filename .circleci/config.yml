@@ -23,7 +23,7 @@ jobs:
     working_directory: ~/circlecitest
     docker:
       -image: cimg/base:stable
-    step: 
+    steps: 
       - attach_workspace:
           at: .
       - run:
