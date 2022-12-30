@@ -1,52 +1,55 @@
 version: 2.1
 
 jobs:
-  say-hello:
+  work:
     working_directory: ~/circlecitest
     docker:
       - image: cimg/base:stable
     steps:
       - run:
-          name: dir
-          command: |
-            pwd
-            ls
+          name: Test
+          command: echo "start"
+  work1:
+    working_directory: ~/circlecitest
+    parameters:
+      env:
+        description: test
+        type: string
+    docker:
+      - image: cimg/base:stable
+    steps:
       - run:
-          name: jq install
-          command: sudo apt-get install jq
-      - run:
-          name: Say hello
-          command: |
-            jq -e ".version + 1" "version.json" > "version.json.tmp"
-            cp "version.json.tmp" "version.json"
-      - run:
-          name: "Check"
-          command: cat version.json
-      - persist_to_workspace:
-          name: next dir
-          root: .
-          paths:
-            - .
-  say-hey:
+          name: Test
+          command: echo <<parameters.env>>
+  work2:
     working_directory: ~/circlecitest
     docker:
       - image: cimg/base:stable
-    steps: 
-      - attach_workspace:
-          at: .
+    steps:
+      steps:
       - run:
-          name: Check
-          command: cat version.json 
+          name: Test
+          command: echo "end"
+          
+    
 
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello:
+      - work:
           filters:
             branches:
               only:
                 circleci-project-setup
-
-      - say-hey:
+      - work1:
+          env: test1
           requires:
-            - say-hello
+            - work
+      - work1:
+          env: test2
+          requires:
+            - work
+      - work2:
+          requries:
+            - work1
+      
