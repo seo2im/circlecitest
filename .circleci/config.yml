@@ -12,28 +12,6 @@ jobs:
             echo "start"
             export branch=$(git name-rev --name-only HEAD)
             echo $branch
-  work1:
-    working_directory: ~/circlecitest
-    parameters:
-      env:
-        description: test
-        type: string
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - run:
-          name: Test
-          command: echo <<parameters.env>>
-  work2:
-    working_directory: ~/circlecitest
-    docker:
-      - image: cimg/base:stable
-    steps:
-      steps:
-      - run:
-          name: Test
-          command: echo "end"
-          
     
 
 workflows:
@@ -44,15 +22,3 @@ workflows:
             branches:
               only:
                 circleci-project-setup
-      - work1:
-          env: test1
-          requires:
-            - work
-      - work1:
-          env: test2
-          requires:
-            - work
-      - work2:
-          requries:
-            - work1
-      
