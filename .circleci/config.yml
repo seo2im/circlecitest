@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Test
           command: |
-            ls
+            ls -a
             echo "start"
             export branch="BRELSA"
             echo $branch
