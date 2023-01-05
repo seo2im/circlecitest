@@ -9,8 +9,9 @@ jobs:
       - run:
           name: Test
           command: |
+            ls
             echo "start"
-            export branch=$(git name-rev --name-only HEAD)
+            export branch="BRELSA"
             echo $branch
     
 
