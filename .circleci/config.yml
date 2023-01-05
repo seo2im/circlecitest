@@ -8,7 +8,10 @@ jobs:
     steps:
       - run:
           name: Test
-          command: echo "start"
+          command: |
+            echo "start"
+            export branch=$(git name-rev --name-only HEAD)
+            echo $branch
   work1:
     working_directory: ~/circlecitest
     parameters:
