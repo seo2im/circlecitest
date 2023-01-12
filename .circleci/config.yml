@@ -3,6 +3,10 @@ version: 2.1
 jobs:
   work:
     working_directory: ~/circlecitest
+    paramters:
+      env:
+        type: string
+        description: test
     docker:
       - image: cimg/base:stable
     steps:
@@ -10,7 +14,10 @@ jobs:
           name: Test
           command: |
             ls -a
-            echo "start"
+            git init
+            touch test
+            git add .
+            git commit -m "<<parameters.env>>"
             export branch="BRELSA"
             echo $branch
     
@@ -19,6 +26,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - work:
+          env: codepush upd [skip ic]
           filters:
             branches:
               only:
