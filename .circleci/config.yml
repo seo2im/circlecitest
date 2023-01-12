@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   work:
     working_directory: ~/circlecitest
-    paramters:
+    parameters:
       env:
         type: string
         description: test
